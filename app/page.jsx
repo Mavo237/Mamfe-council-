@@ -1,63 +1,37 @@
-import Link from 'next/link';
-import { Card } from 'components/card';
-import { ContextAlert } from 'components/context-alert';
-import { Markdown } from 'components/markdown';
-import { RandomQuote } from 'components/random-quote';
-import { getNetlifyContext } from 'utils';
-
-const contextExplainer = `
-The card below is rendered on the server based on the value of \`process.env.CONTEXT\` 
-([docs](https://docs.netlify.com/configure-builds/environment-variables/#build-metadata)):
-`;
-
-const preDynamicContentExplainer = `
-The card content below is fetched by the client-side from \`/quotes/random\` (see file \`app/quotes/random/route.js\`) with a different quote shown on each page load:
-`;
-
-const ctx = getNetlifyContext();
 
 export default function Page() {
-    return (
-        <div className="flex flex-col gap-12 sm:gap-16">
-            <section>
-                <ContextAlert className="mb-6" />
-                <h1 className="mb-4">Netlify Platform Starter – Next.js</h1>
-                <p className="mb-6 text-lg">
-                    Deploy the latest version of Next.js — including Turbopack, React Compiler, and the new caching APIs
-                    — on Netlify in seconds. No configuration or custom adapter required.
-                </p>
-                <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
-                    Read the Docs
-                </Link>
-            </section>
-            {!!ctx && (
-                <section className="flex flex-col gap-4">
-                    <Markdown content={contextExplainer} />
-                    <RuntimeContextCard />
-                </section>
-            )}
-            <section className="flex flex-col gap-4">
-                <Markdown content={preDynamicContentExplainer} />
-                <RandomQuote />
-            </section>
-        </div>
-    );
-}
+  return (
+    <div style={{fontFamily:'Arial', maxWidth:'900px', margin:'0 auto', padding:'20px'}}>
+      <div style={{background:'#0B6E4F', color:'white', padding:'30px', borderRadius:'12px', textAlign:'center'}}>
+        <h1 style={{fontSize:'36px', margin:'0'}}>MAMFE COUNCIL</h1>
+        <p style={{fontSize:'18px'}}>Manyu Division • Southwest Region • Cameroon</p>
+        <p>Serving Our People, Building Our Future</p>
+      </div>
 
-function RuntimeContextCard() {
-    const title = `Netlify Context: running in ${ctx} mode.`;
-    if (ctx === 'dev') {
-        return (
-            <Card title={title}>
-                <p>Next.js will rebuild any page you navigate to, including static pages.</p>
-            </Card>
-        );
-    } else {
-        const now = new Date().toISOString();
-        return (
-            <Card title={title}>
-                <p>This page was statically-generated at build time ({now}).</p>
-            </Card>
-        );
-    }
+      <h2>Welcome to Mamfe</h2>
+      <p>Mamfe is the capital of Manyu Division, located on the banks of the Cross River. Our Council is committed to clean water, good roads, education, health and economic growth for all.</p>
+
+      <h2>Our Services</h2>
+      <ul>
+        <li>Birth Certificates & Civil Status Documents</li>
+        <li>Building Permits & Town Planning</li>
+        <li>Business Licenses & Market Stalls</li>
+        <li>Waste Management & Sanitation</li>
+        <li>Marriage Registration</li>
+      </ul>
+
+      <h2>Contact Us</h2>
+      <p><b>Address:</b> Mamfe Council, Mamfe Town, Manyu Division</p>
+      <p><b>Phone:</b> +237 670 000 000</p>
+      <p><b>Email:</b> info@mamfecouncil.cm</p>
+      <p><b>Office Hours:</b> Monday - Friday, 7:30am - 3:30pm</p>
+
+      <div style={{background:'#FFF3CD', padding:'20px', borderRadius:'10px', marginTop:'20px', textAlign:'center'}}>
+        <h3>Need a Document?</h3>
+        <p>Come to the Council office with your ID. We are here to serve you.</p>
+      </div>
+
+      <p style={{textAlign:'center', marginTop:'30px', color:'#666'}}>© 2026 Mamfe Council. All rights reserved.</p>
+    </div>
+  );
 }
